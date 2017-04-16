@@ -1,42 +1,48 @@
 'use strict';
-//const gulp = require('gulp');
-//const gp = require('gulp-load-plugins')();
-
-//global.$ = {
-//    gulp: require('gulp'),
-//    gp: require('gulp-load-plugins')()
-//};
-//
-//// Module requirement
-//require('./gulp/tasks/sass.js')();
-//require('./gulp/tasks/pug.js')();
-//
-//// Task registration
-//$.gulp.task('sass');
-//$.gulp.task('pug');
 
 global.$ = {
-    path: {
-        task: require('./gulp/paths/tasks.js')
-    },
-    gulp: require('gulp'),
-    del: require('del'),
-    gp: require('gulp-load-plugins')(),
-    browserSync: require('browser-sync').create()
+  dev: true,
+  package: require('./package.json'),
+  config: require('./gulp/config'),
+  path: {
+    task: require('./gulp/paths/tasks.js'),
+    jsFoundation: require('./gulp/paths/js.foundation.js'),
+    cssFoundation: require('./gulp/paths/css.foundation.js'),
+    app: require('./gulp/paths/app.js')
+  },
+  gulp: require('gulp'),
+  del: require('del'),
+  merge: require('merge-stream'),
+  browserify : require('browserify'),
+  source : require('vinyl-source-stream'),
+  buffer : require('vinyl-buffer'),
+  babel : require('babelify'),
+  browserSync: require('browser-sync').create(),
+  fs : require('fs'),
+  gp: require('gulp-load-plugins')({
+    rename: {
+      'gulp-replace-task': 'replaceTask'
+    }
+  })
 };
 
-$.path.task.forEach(function(taskPath){
-    require(taskPath)();
+$.path.task.forEach(function(taskPath) {
+  require(taskPath)();
 });
 
 $.gulp.task('default', $.gulp.series(
-    'clean',
-    $.gulp.parallel(
-        'sass',
-        'pug'
-    ),
-    $.gulp.parallel(
-        'watch',
-        'serve'
-    )
+  'clean',
+  $.gulp.parallel(
+    'sass',
+    'pug',
+    'js:foundation',
+    'js:process',
+    'copy:image',
+    'copy:font',
+    'css:foundation'
+  ),
+  $.gulp.parallel(
+    'watch',
+    'serve'
+  )
 ));
