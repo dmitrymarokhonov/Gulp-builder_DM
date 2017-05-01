@@ -3,3 +3,129 @@
   .greating_picture
 
 h1 Home Work 01
+
+a.class(href="#" title="link")#id
+
+.class-name
+  .inner
+
+.class  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum alias aperiam quos doloribus, deleniti amet eius. Libero quaerat cupiditate quae, soluta tempora eius, iure, aliquam itaque nam unde sequi facere?
+
+- var item = "значение переменной"
+- var item2 = 56/7+7
+- var items = ["Один", "Два", "Три","Четыре"]
+a(href="#").block=item
+a(href="#").block=item2
+
+each item3 in items
+  .block=item3
+
+each item3, index in items
+  .wrapper
+    .block=item3
+    .index=index
+    .length=items.length
+
+// iterating array with for loop 
+- for (var i=0; i < items.length; i++)
+  .wrapper
+    .block=items[i]
+    .index=i
+    .length=items.length
+
+// Object testing
+- 
+  var obj = {
+    val: 'prop',
+    val2: 'prop2'
+  }
+// test1
+each value, key in obj
+  .obj
+    .key=key
+    .value=value
+//test2
+each item in obj
+  .obj
+    .value=item
+
+// Экранирование
+- 
+  var obj01 = {
+    val: '<a href="#">ссылка</a>',
+    val2: 'prop2'
+  }
+// без экранирования
+each item in obj01
+  .obj
+    .value=item
+// с экранированием
+each item in obj01
+  .obj
+    .value!=item
+
+// Масссив с объектами
+- 
+  var obj02 = [
+    {
+      link: '<a href="#">ссылка1</a>',
+      title: 'Title1'
+    },{
+      link: '<a href="#">ссылка2</a>',
+      title: 'Title2'
+    },{
+      link: '<a href="#">ссылка3</a>',
+      title: 'Title3'
+    },{
+      link: '<a href="#">ссылка4</a>',
+      title: 'Title4'
+    }
+  ]
+
+each item in obj02
+   .obj02
+    .link!=item['link']
+    .title=item.title
+
+// Интерполяция (задается #{item.link}) ставка значения ключа link + атрибут data-title  
+each item in obj02
+   .obj02
+    .link Здесь будет !{item.link}
+    .title(data-title=`${item.title}`)
+// Выражения if, else, else if
+each item in obj02
+   .obj02
+    .link Здесь будет !{item.link}
+    if item.title == 'Title2'
+      .title(data-title=`${item.title}`) Условие отработало
+    else
+      .title условие не отработало
+
+each item in obj02
+   .obj02
+    .link Здесь будет !{item.link}
+    if item.title == 'Title2'
+      .title(data-title=`${item.title}`) Условие отработало
+    else if item.title == 'Title4'
+      .title условие отработало для Title4
+// Тестирование конструкции "case"
+each item in obj02
+   .obj02
+    .link Здесь будет !{item.link}
+    case  item.title
+      when 'Title1'
+        .title(data-title=`${item.title}`) Условие case отработало
+// case тест 2    
+each item in obj02
+   .obj02
+    .link Здесь будет !{item.link}
+    case  item.title
+      when 'Title1'
+        .title(data-title=`${item.title}`) Case Title1
+      when 'Title2'
+        .title(data-title=`${item.title}`) Case Title2
+      when 'Title3'
+        .title(data-title=`${item.title}`) Case Title3
+      when 'Title5'
+        .title(data-title=`${item.title}`) Case Title4
+    
