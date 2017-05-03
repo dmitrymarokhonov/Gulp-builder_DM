@@ -1,0 +1,11 @@
+mixin hero()
+    section.section.hero
+        .hero__background
+            img(src='assets/images/bg-main.jpg')
+        .section__wrapper.hero__inner
+            +ul('social', 'hero', {vk:'https://vk.com/dmmar', github:'https://github.com/dmitrymarokhonov/', in:'https://www.linkedin.com/in/dmitry-marokhonov-00b912103/'})
+            .hero__content
+                svg.hero__portfolio(viewBox="0 0 1175.495 313.961")
+                    use(xlink:href="assets/images/sprite.svg#icons--portfolio_header")
+                +user('hero')
+            +arrow('hero')

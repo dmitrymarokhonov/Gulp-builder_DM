@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = {
-  src: './source/js/',
-  bundles: ['app.js', 'admin.js']
-};
+module.exports = [
+  './source/js/app.js',
+  './source/js/map.js'
+];

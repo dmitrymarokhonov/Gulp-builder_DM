@@ -1,0 +1,14 @@
+mixin footer(className)
+    .footer(class=`footer--${className}`)
+        .footer__top
+            .footer__top-content.section__wrapper
+                +nav('footer-nav', {
+                    'Мои работы': './portfolio.html',
+                    'Обо мне': './about.html',
+                    'Блог': './blog.html',
+                    'Авторизация': './index.html'
+                })
+                +ul('social', 'footer', {vk_round:'https://vk.com/dmmar', github_round:'https://github.com/dmitrymarokhonov/', in_round:'https://www.linkedin.com/in/dmitry-marokhonov-00b912103/'})
+        .footer__bottom.section__wrapper
+            p Я веб-разработчик из Эспоо, сайт сделан в рамках обучения в Школе онлайн образования LoftSchool.
+            p © Дмитрий Марохонов | LoftSchool | 2017
