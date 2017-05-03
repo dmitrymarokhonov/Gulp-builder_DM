@@ -18,10 +18,10 @@ mixin blockTitle(title, mod)
         .block-title(class=`block-title--${modificator}`)
             h4.block-title__text= title
 
-mixin checkbox(item, text, type, value)
+mixin checkbox(itemId, itemName, text, type, value)
     div(class=`checkbox`)
         div(class=`checkbox__box checkbox__box--${type}`)
-            input(class=`checkbox__input`, value=value, id=item, name=item, type=type)
+            input(class=`checkbox__input`, value=value, id=itemId, name=itemName, type=type)
             label(class=`checkbox__label`)
         p(class=`checkbox__text`)=text
 
